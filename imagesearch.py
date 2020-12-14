@@ -8,7 +8,7 @@ def yasearch(src):
     with open(src, "rb") as file:
         url = "https://api.imgbb.com/1/upload"
         payload = {
-            "key": '5cc042dd498b91be37eb1b2b7849c3bc',
+            "key": '###',
             "image": base64.b64encode(file.read()),
         }
         res = requests.post(url, payload)
@@ -26,9 +26,3 @@ def yasearch(src):
             s = 'Не могу понять, что на фото :('
 
     return s
-
-import pandas as pd
-
-d = {'very big str': ''}
-r = list(d.keys())[0]
-print(r)
