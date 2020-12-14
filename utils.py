@@ -7,29 +7,6 @@ from urllib.parse import unquote
 import random
 import re
 
-
-def text_gen(text_input):
-    tokenizer = GPT2Tokenizer.from_pretrained("sberbank-ai/rugpt3small_based_on_gpt2")
-
-    model = GPT2LMHeadModel.from_pretrained("sberbank-ai/rugpt3small_based_on_gpt2",
-                                            pad_token_id=tokenizer.eos_token_id)
-    text = text_input
-    input_ids = tokenizer.encode(text, return_tensors='pt')
-
-    beam_output = model.generate(
-        input_ids,
-        max_length=30,
-        min_length=10,
-        num_beams=2,
-        no_repeat_ngram_size=2,
-        early_stopping=True
-    )
-
-    out = tokenizer.decode(beam_output[0], skip_special_tokens=True)
-    out_c = html.unescape(str(out))
-    return out_c
-
-
 def sovet():
     ran = random.choice([i for i in range(1, 5)])
     r = requests.get('https://howcarworks.ru/лайфхак?page={}'.format(ran)).text
